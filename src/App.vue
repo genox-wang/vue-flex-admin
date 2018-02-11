@@ -1,32 +1,57 @@
 <template>
-  <div id="app">
-    <!-- <img src="./assets/logo.png"> -->
-    <!-- <router-view/> -->
-    <boilerplate/>
-  </div>
+  <v-app id="app"
+    :dark="isDarkTheme"
+  >
+    <navigation
+      :mini="navMini"
+      @nav-mini-toggle="navMini = !navMini"
+    />
+    <tool-bar
+      @nav-mini-toggle="navMini = !navMini"
+    >
+      <v-btn icon @click.native.stop="isDarkTheme = !isDarkTheme">
+        <v-icon>refresh</v-icon>
+      </v-btn>
+    </tool-bar>
+    <v-content>
+      <!-- <v-progress-linear
+        v-bind:indeterminate="true"
+        height="2"
+        color="teal accent-4"
+      >
+      </v-progress-linear> -->
+      <v-container>
+        <transition name="fade">
+          <router-view></router-view>
+        </transition>
+      </v-container>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
-import Boilerplate from './components/Boilerplate';
+import Navigation from './components/Navigation';
+import ToolBar from './components/ToolBar';
+
 
 export default {
   name: 'App',
-  data() {
-
-  },
+  data: () => ({
+    navMini: false,
+    isDarkTheme: false,
+  }),
   components: {
-    Boilerplate,
-  }
+    Navigation,
+    ToolBar,
+  },
 };
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>
