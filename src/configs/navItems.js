@@ -21,13 +21,13 @@ export default {
           action: '',
         },
         {
-          title: 'Buttons',
-          route: 'Buttons',
+          title: 'FAlert Examples',
+          route: 'FAlert Examples',
           action: '',
         },
         {
-          title: 'Alertify',
-          route: 'Alertify',
+          title: 'Q&A',
+          route: 'Q&A',
           action: '',
         },
       ],

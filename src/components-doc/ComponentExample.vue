@@ -1,6 +1,5 @@
 <template lang="pug">
   div.component-example(:id="id")
-    codepen(ref="codepen" :pen="pen")
     v-card
       v-toolbar(v-bind:color="currentColor + ' dark-1'" flat dense dark)
         v-btn(dark icon :to="{ hash: id }")
@@ -33,27 +32,22 @@
                 v-for="tab in tabs"
                 v-bind:key="tab"
                 v-bind:id="tab"
-                class="grey lighten-4"
               )
                 markup(:lang="getLang(tab)" v-if="parsed[tab]").ma-0
                   div(v-html="parsed[tab]")
-      v-card-text.subheading.justify
-        slot(name="desc")
       v-card-text
         div(v-bind:id="'example-'+uid")
-    v-divider.my-5
+    v-divider.my-3
 </template>
 
 <script>
 import Vue from 'vue';
-import Codepen from './Codepen';
 import Markup from './Markup';
 
 const release = process.env.RELEASE;
 
 export default {
   components: {
-    Codepen,
     Markup,
   },
   data() {
@@ -105,7 +99,9 @@ export default {
       /* webpackMode: "lazy-once" */
       `../../static/examples/${this.file}.vue`,
     ).then((comp) => {
+      console.log(comp);
       this.instance = new Vue(comp.default);
+      this.instance.$store = this.$store;
       this.instance.$mount(`#example-${vm.uid}`);
     });
   },
@@ -167,22 +163,23 @@ export default {
 </script>
 
 <style lang="stylus">
-  .component-example
-    .component-example__panel
-      .expansion-panel__body
-        border: none
-      .tabs__item, .markup
-        height: 100%
-      .tabs__items
-        border: none
-        max-height: 500px
-        overflow-y: auto
-      > li
-        border: none
-    .justify
-      text-align: justify
-    nav.toolbar
-      z-index: 0
-    [data-app]
-      min-height: 300px
+
+.component-example
+  .component-example__panel
+    .expansion-panel__body
+      border: none
+    .tabs__item, .markup
+      height: 100%
+    .tabs__items
+      border: none
+      max-height: 500px
+      overflow-y: auto
+    > li
+      border: none
+  .justify
+    text-align: justify
+  nav.toolbar
+    z-index: 0
+  [data-app]
+    min-height: 300px
 </style>

@@ -6,12 +6,13 @@ import lodash from 'lodash';
 import VueAlertify from 'vue-alertify';
 import VueClipboard from 'vue-clipboard2';
 import Vuetify from 'vuetify';
-import App from './App';
+import Hljs from 'highlight.js';
+import 'vuetify/dist/vuetify.min.css';
+import 'material-design-icons/iconfont/material-icons.css';
 import router from './router';
 import store from './store';
+import App from './App';
 
-import('material-design-icons/iconfont/material-icons.css');
-import('vuetify/dist/vuetify.min.css');
 
 Vue.config.productionTip = false;
 Vue.prototype.$http = axios;
@@ -20,6 +21,13 @@ Vue.prototype._ = lodash;
 Vue.use(Vuetify);
 Vue.use(VueAlertify);
 Vue.use(VueClipboard);
+
+
+Vue.directive('highlightjs', (el) => {
+  const blocks = el.querySelectorAll('pre code');
+  Array.prototype.forEach.call(blocks, Hljs.highlightBlock);
+});
+
 
 /* eslint-disable no-new */
 new Vue({

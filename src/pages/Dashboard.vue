@@ -1,26 +1,19 @@
-<template lang="pug">
-  component-view(v-bind:doc="doc")
+<template>
+  <v-btn
+    @click.native.stop="$alert('Hello')"
+    color="success"
+  >
+    Success
+  </v-btn>
 </template>
 
 <script>
-import ComponentView from '../components-doc/ComponentView';
+import fAlert from '@/mixins/fAlert';
 
 export default {
-  name: 'alerts-view',
+  mixins: [fAlert],
   data() {
-    return {
-      doc: {
-        title: 'Alert',
-        examples: [
-          { header: 'Contextual', file: 'alerts/closable', desc: '' },
-          { header: 'Contextual', file: 'alerts/closable', desc: '' },
-          { header: 'Contextual', file: 'alerts/closable', desc: '' },
-        ],
-      },
-    };
-  },
-  components: {
-    ComponentView,
+    return {};
   },
 };
 </script>

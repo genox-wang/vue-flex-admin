@@ -21,15 +21,17 @@
       >
       </v-progress-linear> -->
       <v-container>
-        <transition name="fade">
+        <!-- <transition name="fade"> -->
           <router-view></router-view>
-        </transition>
+        <!-- </transition> -->
       </v-container>
     </v-content>
+    <f-alert/>
   </v-app>
 </template>
 
 <script>
+import FAlert from '@/components/FAlert';
 import Navigation from './components/Navigation';
 import ToolBar from './components/ToolBar';
 
@@ -43,6 +45,7 @@ export default {
   components: {
     Navigation,
     ToolBar,
+    FAlert,
   },
 };
 </script>

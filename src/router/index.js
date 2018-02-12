@@ -2,6 +2,8 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import MaterialIcons from '@/pages/MaterialIcons';
 import Dashboard from '@/pages/Dashboard';
+import QA from '@/pages/Q&A';
+import FAlertExamples from '@/pages/FAlertExamples';
 
 Vue.use(Router);
 
@@ -32,6 +34,16 @@ export default new Router({
       path: '/icons/meterial',
       name: 'Material Icons',
       component: MaterialIcons,
+    },
+    {
+      path: '/examples/alerts',
+      name: 'FAlert Examples',
+      component: FAlertExamples,
+    },
+    {
+      path: '/markdowns/qa',
+      name: 'Q&A',
+      component: QA,
     },
   ],
 });

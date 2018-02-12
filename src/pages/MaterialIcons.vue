@@ -13,7 +13,7 @@
               v-clipboard:error="onIconCopyError"
               slot="activator"
             >
-              <v-icon style="display: inline-block">{{ icon }}</v-icon>
+              <v-icon>{{ icon }}</v-icon>
             </v-btn>
             <span>{{ icon }}</span>
           </v-tooltip>

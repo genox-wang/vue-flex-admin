@@ -15,9 +15,9 @@
           </v-list-tile-avatar>
           <v-list-tile-content>
             <v-list-tile-title
-              :class="`${currentColor}--text text--accent-3`"
+              :class="`${currentColor}--text text--accent-4`"
             >
-              Vue Flex Admin
+              <strong>Vue Flex Admin</strong>
             </v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
@@ -29,19 +29,19 @@
         <v-list-tile slot="item">
           <v-list-tile-action>
             <v-icon
-              :color="currentColor + ' accent-3'"
+              :color="currentColor + ' accent-4'"
             >
               {{ item.action }}
             </v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title :class="`${currentColor}--text text--accent-3`">
-              {{ item.title }}
+            <v-list-tile-title :class="`${currentColor}--text text--accent-4`">
+              <strong> {{ item.title }} </strong>
             </v-list-tile-title>
           </v-list-tile-content>
           <v-list-tile-action>
             <v-icon
-              :color="currentColor + ' accent-3'"
+              :color="currentColor + ' accent-4'"
             >
             keyboard_arrow_down
             </v-icon>
@@ -55,9 +55,9 @@
         >
           <v-list-tile-content>
             <v-list-tile-title
-              :class="navigationMatchRoute(subItem)?'':`${currentColor}--text text--accent-3`"
+              :class="navigationMatchRoute(subItem)?'':`${currentColor}--text text--accent-4`"
             >
-              {{ subItem.title }}
+              <strong> {{ subItem.title }} </strong>
             </v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
