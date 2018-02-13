@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-btn @click.native.stop="$alert('This is a alert!')" color="">
+    <v-btn @click.native.stop="$alert('This is a alert!')" color="" dark>
       Normal
     </v-btn>
     <v-btn @click.native.stop="$alert_success('This is a alert!')" color="success">

@@ -19,7 +19,7 @@
             v-on:click.stop="panel = !panel"
             slot="activator"
           )
-            v-icon code
+            v-icon {{ panel?'keyboard_arrow_up':'keyboard_arrow_down' }}
           span View Content
       v-expansion-panel.elevation-0.component-example__panel
         v-expansion-panel-content(v-model="panel")
@@ -87,11 +87,16 @@ export default {
 
 <style lang="stylus">
 @import "../../node_modules/github-markdown-css/github-markdown.css";
-@import "../../node_modules/highlight.js/styles/github.css";
+@import "../../node_modules/highlight.js/styles/github-gist.css";
+// @import "../../node_modules/highlight.js/styles/atom-one-light.css";
+// @import "../../node_modules/highlight.js/styles/tomorrow.css";
+// @import "../../node_modules/highlight.js/styles/solarized-light.css";
 
-code {
+code
   box-shadow: none;
-}
+  font-weight: 500;
+  &:before
+    display: none
 
 .component-example
   .component-example__panel

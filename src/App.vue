@@ -1,14 +1,7 @@
 <template>
-  <v-app id="app"
-    :dark="isDarkTheme"
-  >
-    <navigation
-      :mini="navMini"
-      @nav-mini-toggle="navMini = !navMini"
-    />
-    <tool-bar
-      @nav-mini-toggle="navMini = !navMini"
-    >
+  <v-app id="app" :dark="isDarkTheme">
+    <navigation :mini="navMini" @nav-mini-toggle="navMini = !navMini" />
+    <tool-bar @nav-mini-toggle="navMini = !navMini">
       <v-btn icon @click.native.stop="isDarkTheme = !isDarkTheme">
         <v-icon>refresh</v-icon>
       </v-btn>
@@ -22,10 +15,25 @@
       </v-progress-linear> -->
       <v-container>
         <!-- <transition name="fade"> -->
-          <router-view></router-view>
+        <router-view></router-view>
         <!-- </transition> -->
       </v-container>
     </v-content>
+    <v-fab-transition>
+      <v-btn
+        fab
+        dark
+        fixed
+        bottom
+        right
+        color="red"
+        v-scroll="onScroll"
+        v-show="fab"
+        @click="toTop"
+      >
+        <v-icon>keyboard_arrow_up</v-icon>
+      </v-btn>
+    </v-fab-transition>
     <f-alert/>
   </v-app>
 </template>
@@ -35,26 +43,47 @@ import FAlert from '@/components/FAlert';
 import Navigation from './components/Navigation';
 import ToolBar from './components/ToolBar';
 
-
 export default {
   name: 'App',
-  data: () => ({
-    navMini: false,
-    isDarkTheme: false,
-  }),
   components: {
     Navigation,
     ToolBar,
     FAlert,
   },
+  data: () => ({
+    navMini: false,
+    isDarkTheme: false,
+    fab: false,
+  }),
+  mounted() {
+    this.onScroll();
+  },
+  methods: {
+    onScroll() {
+      if (typeof window === 'undefined') return;
+      const top = window.pageYOffset ||
+          document.documentElement.offsetTop ||
+          0;
+      this.fab = top > 300;
+    },
+    toTop() {
+      this.$router.push({ hash: '' });
+      window.scrollTo(0, 0);
+    },
+  },
 };
+
 </script>
 
 <style>
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .3s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.3s;
+  }
+
+  .fade-enter,
+  .fade-leave-to {
+    opacity: 0;
+  }
+
 </style>

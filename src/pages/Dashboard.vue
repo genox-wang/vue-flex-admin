@@ -1,20 +1,21 @@
 <template>
   <v-btn
     @click.native.stop="$alert('Hello')"
-    color="success"
-  >
+    color="success">
     Success
-  </v-btn>
+    </v-btn>
 </template>
 
 <script>
 import fAlert from '@/mixins/fAlert';
 
 export default {
-  mixins: [fAlert],
+  mixins: [
+    fAlert,
+  ],
   data() {
     return {};
   },
 };
-</script>
 
+</script>

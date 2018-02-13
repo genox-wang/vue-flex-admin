@@ -1,0 +1,44 @@
+[
+  {
+      "name": "Dashboard",
+      "action": "dashboard",
+      "items": [
+      {
+          "path": "/",
+          "name": "Dashboard",
+          "component": "Dashboard",
+          "action": ""
+      }
+    ]
+  },
+  {
+      "name": "Develop",
+      "action": "home",
+      "items": [
+      {
+          "path": "/icons/meterial",
+          "name": "Material Icons",
+          "component": "MaterialIcons",
+          "action": ""
+      },
+      {
+          "path": "/examples/falerts",
+          "name": "FAlerts Examples",
+          "component": "ExamplesFAlerts",
+          "action": ""
+      },
+      {
+          "path": "/examples/vbtns",
+          "name": "VButtons Examples",
+          "component": "ExamplesVButtons",
+          "action": ""
+      },
+      {
+          "path": "/markdowns/qa",
+          "name": "Q&A",
+          "component": "Q&A",
+          "action": ""
+      }
+    ]
+  }
+]

@@ -4,7 +4,7 @@
     fixed
     dark
     app
-    :mini-variant.sync="mini"
+    :mini-variant="mini"
     id="navigation"
   >
     <v-toolbar flat class="transparent">
@@ -36,7 +36,7 @@
           </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-title :class="`${currentColor}--text text--accent-4`">
-              <strong> {{ item.title }} </strong>
+              <strong> {{ item.name }} </strong>
             </v-list-tile-title>
           </v-list-tile-content>
           <v-list-tile-action>
@@ -47,20 +47,20 @@
             </v-icon>
           </v-list-tile-action>
         </v-list-tile>
-        <v-list-tile v-for="subItem in item.items"
-          :class="navigationMatchRoute(subItem)?currentColor + ' dark-1':''"
-          ripple
-          :key="subItem.title"
-          @click="navigationClicked(subItem)"
-        >
-          <v-list-tile-content>
-            <v-list-tile-title
-              :class="navigationMatchRoute(subItem)?'':`${currentColor}--text text--accent-4`"
-            >
-              <strong> {{ subItem.title }} </strong>
-            </v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+        <router-link :to="{name: subItem.name}" v-for="subItem in item.items" :key="subItem.title">
+          <v-list-tile
+            :class="navigationMatchRoute(subItem)?currentColor + ' dark-1':''"
+            ripple
+          >
+            <v-list-tile-content>
+              <v-list-tile-title
+                :class="navigationMatchRoute(subItem)?'':`${currentColor}--text text--accent-4`"
+              >
+                <strong> {{ subItem.name }} </strong>
+              </v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </router-link>
       </v-list-group>
     </v-list>
   </v-navigation-drawer>
@@ -68,7 +68,9 @@
 
 <script>
 import { mapState } from 'vuex';
-import navItems from '../configs/navItems';
+
+const items = require('../configs/nav.json');
+
 
 export default {
   props: {
@@ -79,7 +81,7 @@ export default {
   },
   data() {
     return {
-      items: navItems.items,
+      items,
     };
   },
   computed: {
@@ -88,12 +90,8 @@ export default {
     ]),
   },
   methods: {
-    navigationClicked(item) {
-      this.$router.push({ name: item.route });
-      console.log(item.route);
-    },
     navigationMatchRoute(item) {
-      return this._.isEqual(item.route, this.$route.name);
+      return this._.isEqual(item.name, this.$route.name);
     },
     navigationMiniToggle() {
       this.$emit('nav-mini-toggle');
@@ -102,3 +100,9 @@ export default {
 };
 
 </script>
+
+<style scoped>
+a {
+ text-decoration:none
+}
+</style>

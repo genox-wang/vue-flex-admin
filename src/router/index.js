@@ -1,21 +1,45 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import MaterialIcons from '@/pages/MaterialIcons';
-import Dashboard from '@/pages/Dashboard';
-import QA from '@/pages/Q&A';
-import FAlertExamples from '@/pages/FAlertExamples';
+import _ from 'lodash';
+
+const items = require('../configs/nav.json');
 
 Vue.use(Router);
 
-export default new Router({
-  // mode: 'history',
+
+// Route helper function for lazy loading
+function route(path, name, view) {
+  return {
+    path,
+    name,
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      /* webpackMode: "lazy-once" */
+      `../pages/${view}.vue`,
+    ),
+  };
+}
+
+const routes = [];
+
+if (_.isArray(items)) {
+  _.forEach(items, (item) => {
+    if (_.isArray(item.items)) {
+      _.forEach(item.items, (nav) => {
+        routes.push(route(nav.path, nav.name, nav.component));
+      });
+    }
+  });
+}
+
+
+const router = new Router({
   async scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition;
     }
-    // console.log('scrollBehavior');
+
     if (to.hash) {
-      // console.log(to.hash);
       return {
         selector: to.hash,
         offset: { y: 80 },
@@ -24,26 +48,8 @@ export default new Router({
 
     return { y: 0 };
   },
-  routes: [
-    {
-      path: '/',
-      name: 'Dashboard',
-      component: Dashboard,
-    },
-    {
-      path: '/icons/meterial',
-      name: 'Material Icons',
-      component: MaterialIcons,
-    },
-    {
-      path: '/examples/alerts',
-      name: 'FAlert Examples',
-      component: FAlertExamples,
-    },
-    {
-      path: '/markdowns/qa',
-      name: 'Q&A',
-      component: QA,
-    },
-  ],
+  routes,
 });
+
+
+export default router;

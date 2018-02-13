@@ -42,7 +42,9 @@
 
 <script>
 import Vue from 'vue';
+import store from '@/store';
 import Markup from './Markup';
+
 
 const release = process.env.RELEASE;
 
@@ -88,6 +90,7 @@ export default {
     },
   },
   beforeDestroy() {
+    delete (this.instance.$store);
     this.instance.$destroy();
   },
   mounted() {
@@ -99,9 +102,8 @@ export default {
       /* webpackMode: "lazy-once" */
       `../../static/examples/${this.file}.vue`,
     ).then((comp) => {
-      console.log(comp);
       this.instance = new Vue(comp.default);
-      this.instance.$store = this.$store;
+      this.instance.$store = store;
       this.instance.$mount(`#example-${vm.uid}`);
     });
   },
@@ -154,9 +156,6 @@ export default {
         this.loading = false;
         return Promise.resolve();
       });
-    },
-    sendToCodepen() {
-      this.getMarkup().then(() => this.$refs.codepen.submit());
     },
   },
 };
