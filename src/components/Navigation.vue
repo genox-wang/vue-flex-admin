@@ -69,7 +69,7 @@
 <script>
 import { mapState } from 'vuex';
 
-const items = require('../configs/nav.json');
+const items = require('../router/nav.json');
 
 
 export default {

@@ -34,8 +34,8 @@ export default {
     ]),
   },
   methods: {
-    onIconCopyed() {
-      this.$alert_success('Success Copyed');
+    onIconCopyed(target) {
+      this.$alert_success(`[${target.text}] copyed`);
     },
     onIconCopyError(e) {
       this.$alert_error(e);

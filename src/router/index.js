@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import _ from 'lodash';
 
-const items = require('../configs/nav.json');
+const items = require('./nav.json');
 
 Vue.use(Router);
 

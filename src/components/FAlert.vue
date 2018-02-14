@@ -18,7 +18,6 @@
 export default {
   computed: {
     alertOpts() {
-      console.log(this.$store.state.alertOptions);
       return this.$store.state.alertOptions;
     },
   },

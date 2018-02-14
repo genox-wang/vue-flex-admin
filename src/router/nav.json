@@ -34,6 +34,12 @@
           "action": ""
       },
       {
+          "path": "/examples/fdialogs",
+          "name": "FDialogs Examples",
+          "component": "ExamplesFDialogs",
+          "action": ""
+      },
+      {
           "path": "/markdowns/qa",
           "name": "Q&A",
           "component": "Q&A",

@@ -3,7 +3,7 @@
     <navigation :mini="navMini" @nav-mini-toggle="navMini = !navMini" />
     <tool-bar @nav-mini-toggle="navMini = !navMini">
       <v-btn icon @click.native.stop="isDarkTheme = !isDarkTheme">
-        <v-icon>refresh</v-icon>
+        <v-icon>{{isDarkTheme?'brightness_7':'brightness_4'}}</v-icon>
       </v-btn>
     </tool-bar>
     <v-content>
