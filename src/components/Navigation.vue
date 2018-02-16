@@ -25,27 +25,22 @@
     </v-toolbar>
     <v-divider></v-divider>
     <v-list>
-      <v-list-group v-for="item in items" :value="item.active" v-bind:key="item.title">
-        <v-list-tile slot="item">
+      <v-list-group
+        v-for="item in items"
+        :value="item.active"
+        v-bind:key="item.title"
+        :class="`${currentColor}--text text--accent-4`"
+        no-action
+      >
+        <v-list-tile slot="activator">
           <v-list-tile-action>
-            <v-icon
-              :color="currentColor + ' accent-4'"
-            >
-              {{ item.action }}
-            </v-icon>
-          </v-list-tile-action>
+             <v-icon :color="currentColor + ' accent-4'">{{item.action}}</v-icon>
+         </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title :class="`${currentColor}--text text--accent-4`">
+            <v-list-tile-title >
               <strong> {{ item.name }} </strong>
             </v-list-tile-title>
           </v-list-tile-content>
-          <v-list-tile-action>
-            <v-icon
-              :color="currentColor + ' accent-4'"
-            >
-            keyboard_arrow_down
-            </v-icon>
-          </v-list-tile-action>
         </v-list-tile>
         <router-link :to="{name: subItem.name}" v-for="subItem in item.items" :key="subItem.title">
           <v-list-tile
@@ -54,7 +49,7 @@
           >
             <v-list-tile-content>
               <v-list-tile-title
-                :class="navigationMatchRoute(subItem)?'':`${currentColor}--text text--accent-4`"
+                :class="navigationMatchRoute(subItem)?'white--text':`${currentColor}--text text--accent-4`"
               >
                 <strong> {{ subItem.name }} </strong>
               </v-list-tile-title>

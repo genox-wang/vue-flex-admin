@@ -1,7 +1,7 @@
 <template>
   <v-snackbar id="snackbar" :timeout="alertOpts.timeOut" bottom :color="alertOpts.color" v-model="alertOpts.isShow">
     <strong>{{ alertOpts.text }}</strong>
-    <v-spacer></v-spacer>
+    <!-- <v-spacer></v-spacer>
     <v-btn
         fab
         dark
@@ -10,7 +10,7 @@
         @click.native.stop="close"
       >
         <v-icon>keyboard_arrow_down</v-icon>
-    </v-btn>
+    </v-btn> -->
   </v-snackbar>
 </template>
 

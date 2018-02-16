@@ -18,23 +18,25 @@
           span View source
       v-expansion-panel.elevation-0.component-example__panel
         v-expansion-panel-content(v-model="panel")
-          v-tabs(ref="tabs" :scrollable="false")
-            v-tabs-bar(dark v-bind:class="[currentColor]" class="darken-2 pl-0")
-              v-tabs-slider(v-bind:color="currentColor + ' lighten-2'")
-              v-tabs-item(
-                v-for="tab in tabs"
-                v-bind:key="tab"
-                v-bind:href="'#'+tab"
-                v-show="parsed[tab]"
-              ) {{ tab }}
-            v-tabs-items
-              v-tabs-content(
-                v-for="tab in tabs"
-                v-bind:key="tab"
-                v-bind:id="tab"
-              )
-                markup(:lang="getLang(tab)" v-if="parsed[tab]").ma-0
-                  div(v-html="parsed[tab]")
+          v-tabs(
+            :scrollable="false"
+            :color="currentColor + ' darken-1'"
+            dark
+            :slider-color="currentColor + ' lighten-2'"
+          )
+            v-tab(
+              v-for="tab in tabs"
+              v-bind:key="tab"
+              v-bind:href="'#'+tab"
+              v-show="parsed[tab]"
+            ) {{ tab }}
+            v-tab-item(
+              v-for="tab in tabs"
+              v-bind:key="tab"
+              v-bind:id="tab"
+            )
+              markup(:lang="getLang(tab)" v-if="parsed[tab]").ma-0
+                div(v-html="parsed[tab]")
       v-card-text
         div(v-bind:id="'example-'+uid")
     v-divider.my-3
@@ -86,7 +88,7 @@ export default {
   },
   watch: {
     panel() {
-      this.getMarkup().then(() => this.$refs.tabs.slider());
+      this.getMarkup();// .then(() => this.$refs.tabs.slider());
     },
   },
   beforeDestroy() {
