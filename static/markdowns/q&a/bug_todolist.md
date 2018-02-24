@@ -8,3 +8,8 @@
 ### Navigation
 
 > 1. Can't custom `key-arrow-down` 's  color in group-list when update to vuetifyjs @^1.0.1
+> 2. subItems can't show action icon when is mini
+
+### ComponentDocView
+
+> 1. Example code style still overlay!

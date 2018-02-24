@@ -47,6 +47,9 @@
             :class="navigationMatchRoute(subItem)?currentColor + ' dark-1':''"
             ripple
           >
+            <v-list-tile-action v-if="subItem.action">
+              <v-icon>{{ subItem.action }}</v-icon>
+            </v-list-tile-action>
             <v-list-tile-content>
               <v-list-tile-title
                 :class="navigationMatchRoute(subItem)?'white--text':`${currentColor}--text text--accent-4`"
