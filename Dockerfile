@@ -1,17 +1,20 @@
 FROM node:slim
 
-RUN apt-get update \
-    && apt-get install -y nginx
-
 WORKDIR /app
+
+COPY package.json /app/package.json
+
+RUN npm install --registry=https://registry.npm.taobao.org --chromedriver_cdnurl=https://npm.taobao.org/mirrors/chromedriver
 
 COPY . /app/
 
-EXPOSE 80
-
-RUN yarn install \
-    && npm run build \
-    && cp -r dist/* /var/www/html \
+RUN npm run build \
+    && mkdir ../mytemp \
+    && cp -r dist/* ../mytemp \
     && rm -rf /app
 
-CMD ["nginx", "-g", "daemon off;"]
+FROM nginx
+
+COPY --from=0  /mytemp/ /usr/share/nginx/html 
+
+EXPOSE 80
