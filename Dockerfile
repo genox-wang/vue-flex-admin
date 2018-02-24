@@ -14,4 +14,4 @@ RUN yarn install \
     && cp -r dist/* /var/www/html \
     && rm -rf /app
 
-CMD ["nginx", "-g", "deamon off;"]
+CMD ["nginx", "-g", "daemon off;"]
