@@ -1,12 +1,12 @@
-# fix_admin
+# Vue Flex Admin
 
-> flex template for developing admin
+> flex template for developing admin base on vuetifyjs
 
 ## Build Setup
 
 ``` bash
 # install dependencies
-npm install
+yarn install
 
 # serve with hot reload at localhost:8080
 npm run dev

@@ -17,4 +17,4 @@ FROM nginx
 
 COPY --from=0  /mytemp/ /usr/share/nginx/html 
 
-EXPOSE 80
+EXPOSE 8000
